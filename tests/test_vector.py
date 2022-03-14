@@ -1,4 +1,4 @@
-from plntter.src.utils.vector import Vector
+from plntter.src.plntter.utils.vector import Vector
 
 import numpy as np
 
