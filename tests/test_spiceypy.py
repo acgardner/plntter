@@ -1,5 +1,5 @@
 import numpy as np
 import spiceypy
 
-def test_pytest():
+def test_pytest() -> None:
     pass
