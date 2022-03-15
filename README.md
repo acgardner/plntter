@@ -12,7 +12,6 @@ PLNTTER uses:
 
 ### Immediate TODO's
 - figure out why .gitignore doesn't hide pycache folders / files
-- fix relative pathing to packages
 - finish spiceypy auto-builder
 - finish defining vector / quaternion operations
 - decide on matrix class
