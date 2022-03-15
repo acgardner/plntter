@@ -1,5 +1,5 @@
 # PLNTTER
-Portable Localization / Navigation Toolkit for Terrestrial / Extraterrestrial Roving
+Portable Localization / Navigation Toolkit for Extraterrestrial Roving
 
 ## Packages
 PLNTTER uses:
