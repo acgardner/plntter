@@ -1,6 +1,6 @@
-from typing import Iterable
-
 import numpy as np
+
+from typing import Iterable
 
 
 class Vector:
@@ -14,26 +14,50 @@ class Vector:
     def val(self):
         return self._vec
     @val.setter
-    def val(self, vec):
+    def val(self, vec: Iterable):
         self._vec = vec
     @property
     def x(self):
         return self._vec[0]
     @x.setter
-    def x(self, val):
-        self.x = val
+    def x(self, var: float):
+        self.x = var
     @property
     def y(self):
         return self._vec[1]
     @y.setter
-    def y(self, val):
-        self.y = val
+    def y(self, var: float):
+        self.y = var
     @property
     def z(self):
         return self._vec[2]
     @z.setter
-    def z(self, val):
-        self.z = val
+    def z(self, var: float):
+        self.z = var
+    
+    def __add__(self, other):
+        vec = []
+        for it,num in enumerate(other):
+            vec[it] = self._vec[it] + num
+        return Vector(vec)
+    
+    def __iadd__(self, other):
+        vec = []
+        for it,num in enumerate(other):
+            vec[it] = self._vec[it] + num
+        return Vector(vec)
+
+    def __sub__(self, other):
+        vec = []
+        for it,num in enumerate(other):
+            vec[it] = self._vec[it] - num
+        return Vector(vec)
+
+    def __isub__(self, other):
+        vec = []
+        for it,num in enumerate(other):
+            vec[it] = self._vec[it] - num
+        return Vector(vec)
 
     def to_skew_mat(self, dim=3) -> np.array:
         """

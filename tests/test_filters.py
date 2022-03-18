@@ -1,4 +1,4 @@
-from plntter.utils.filters import AEKF, MEKF, UKF
+from plntter.utils.filter import AEKF, MEKF, UKF
 
 
 def test_AEKF() -> None:
