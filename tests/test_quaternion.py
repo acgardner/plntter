@@ -8,15 +8,16 @@ def test_quat_setters() -> None:
     qv = q[0:3]
     q0 = q[-1]
     quat = Quaternion(q)
-    assert (quat.val == q)
-    assert (quat.qv == qv)
-    assert (quat.qx == qv[0])
-    assert (quat.qy == qv[1])
-    assert (quat.qz == qv[2])
-    assert (quat.q0 == q0)
+    np.testing.assert_array_equal(quat.val, q)
+    np.testing.assert_array_equal(quat.qv, qv)
+    assert(quat.qx == qv[0])
+    assert(quat.qy == qv[1])
+    assert(quat.qz == qv[2])
+    assert(quat.q0 == q0)
 
 def test_quat_mult() -> None:
     q = Quaternion([1,0,0,1])
     p = [0,1,0,1]
-    out = [1,1,1,1]
-    np.testing.assert_array_equal(out, q*p)
+    quat = q*p
+    assert(type(quat) == Quaternion)
+    np.testing.assert_array_equal(quat.val, [1,1,1,1])
