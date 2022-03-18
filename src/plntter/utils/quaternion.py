@@ -9,8 +9,11 @@ class Quaternion:
     Quaternion utility class
     q = [qv,q0]
     """
-    def __init__(self, quat):
-        self._quat = quat
+    def __init__(self, quat: Iterable):
+        if isinstance(quat, np.ndarray):
+            self._quat = quat.flatten()
+        if isinstance(quat, list):
+            self._quat = np.array(quat)
         self._qv = self._quat[0:3]
         self._q0 = self._quat[-1]
 
@@ -19,7 +22,7 @@ class Quaternion:
         return self._quat
     @val.setter
     def val(self, quat: Iterable):
-        self._quat = quat
+        self._quat = Quaternion(quat)
     @property
     def qv(self):
         return self._qv
@@ -48,7 +51,7 @@ class Quaternion:
                       self.q0*p.qx + self.qx*p.q0 + self.qy*p.qz - self.qz*p.qy,
                       self.q0*p.qy - self.qx*p.qz + self.qy*p.q0 + self.qz*p.qx,
                       self.q0*p.qz + self.qx*p.qy - self.qy*p.qx + self.qz*p.q0])
-        return q
+        return Quaternion(q)
 
     def to_mat(self) -> np.array:
         """
