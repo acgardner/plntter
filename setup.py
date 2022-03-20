@@ -9,6 +9,7 @@ setup(
     description="Portable Localization / Navigation Toolkit for Terrestrial / Extraterrestrial Roving",
     url="https://github.com/acgardner/plntter.git",
     license="MIT",
+    license_files=("LICENSE"),
     packages=find_packages("src"),
     package_dir={"": "src"},
     install_requires=[
