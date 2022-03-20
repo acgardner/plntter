@@ -12,6 +12,10 @@ setup(
     license_files=("LICENSE"),
     packages=find_packages("src"),
     package_dir={"": "src"},
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+    ],
     install_requires=[
         "matplotlib",
         "numpy",
