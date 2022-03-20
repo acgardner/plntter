@@ -1,19 +1,26 @@
 # PLNTTER
-Portable Localization / Navigation Toolkit for Terrestrial / Extraterrestrial Roving
+PLNTTER is a Python library for developing and testing navigation algorithms.
+PLNTTER - Pythonic Localization / Navigation Toolkit for Terrestrial / Extraterrestrial Roving
 
-## Packages
-PLNTTER uses:
-- matplotlib
-- numpy
-- opencv-python
-- pytest
-- seaborn
-- spiceypy
 
-### Immediate TODO's
-- figure out why .gitignore doesn't hide pycache folders / files
+## Usage
+Before using PLNTTER's utility classes, run the following:
+```python
+pip install --upgrade matplotlib numpy opencv-python pytest seaborn spiceypy
+```
+Then, verify the build by running:
+```python
+python3 main.py
+```
+
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
+
+## TODO
 - finish spiceypy auto-builder
 - finish defining vector / quaternion operations
 - decide on matrix class
-- add ekf and ukf predict / update equations
-- create plotting class using matplotlib / seaborn
+- creat plotting class for seaborn and plotly
+- add EKF and UKF predict / update equations
