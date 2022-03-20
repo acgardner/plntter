@@ -13,9 +13,12 @@ setup(
     packages=find_packages("src"),
     package_dir={"": "src"},
     install_requires=[
-        "numpy",
         "matplotlib",
+        "numpy",
+        "opencv-python",
+        "plotly",
+        "pytest",
         "seaborn",
-        "spiceypy"
+        "spiceypy",
     ],
 )
