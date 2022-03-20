@@ -1,6 +1,6 @@
 # PLNTTER
 
-PLNTTER is a Python library for developing and testing navigation algorithms.
+PLNTTER is a Python library for developing and testing navigation algorithms
 
 PLNTTER = Pythonic Localization / Navigation Toolkit for Terrestrial / Extraterrestrial Roving
 
@@ -36,5 +36,5 @@ python3 main.py
 - finish spiceypy auto-builder
 - finish defining vector / quaternion operations
 - decide on matrix class
-- creat plotting class for seaborn and plotly
+- create plotting class for seaborn and plotly
 - add EKF and UKF predict / update equations
