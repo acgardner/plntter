@@ -7,7 +7,7 @@ vec = Vector([1,2,3])
 quat = Quaternion([0,0,0,1])
 ukf = UKF()
 
-imu = IMU()
+imu = IMU(vec)
 st = StarTracker()
 
-print(f"I ran! Here is proof: {imu.x}")
+print(f"I ran! Here is proof: {imu.get_measurement()}")

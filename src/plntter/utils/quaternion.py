@@ -46,18 +46,40 @@ class Quaternion:
     def q0(self, val: float) -> float:
         self._q0 = val
 
-    def __mul__(self, p: Iterable) -> Quaternion:
-        p = Quaternion(p)
+    def __mul__(self, p: Quaternion) -> Quaternion:
         q = np.array([self.q0*p.q0 - self.qx*p.qx - self.qy*p.qy + self.qz*p.qz,
                       self.q0*p.qx + self.qx*p.q0 + self.qy*p.qz - self.qz*p.qy,
                       self.q0*p.qy - self.qx*p.qz + self.qy*p.q0 + self.qz*p.qx,
                       self.q0*p.qz + self.qx*p.qy - self.qy*p.qx + self.qz*p.q0])
         return Quaternion(q)
 
+    def __imul__(self, p: Quaternion) -> Quaternion: 
+        q = np.array([self.q0*p.q0 - self.qx*p.qx - self.qy*p.qy + self.qz*p.qz,
+                      self.q0*p.qx + self.qx*p.q0 + self.qy*p.qz - self.qz*p.qy,
+                      self.q0*p.qy - self.qx*p.qz + self.qy*p.q0 + self.qz*p.qx,
+                      self.q0*p.qz + self.qx*p.qy - self.qy*p.qx + self.qz*p.q0])
+        return Quaternion(q)
+
+    def inv(self) -> Quaternion:
+        q = self.val
+        q[0:3] *= -1.
+        return Quaternion(q)
+
+    def norm(self) -> Quaternion:
+        self.val /= np.linalg.norm(self.val)
+
     def to_mat(self) -> np.array:
         """
         This function computes the matrix equivalent of a given quaternion, q = [qv,q0].
         The matrix is a homogeneous quadratic function of q, and is orthogonal iff q has unit norm.
         """
-        mat = np.eye(3)*(self.q0**2-np.abs(self.qv**2)) + 2.*self.qv*self.qv.T - 2.*self.q0*Vector.to_skew_mat(self.qv)
+        mat = np.eye(3)*(self.q0**2-np.abs(self.qv**2)) + 2.*self.qv@self.qv.T - 2.*self.q0*Vector.to_skew_mat(self.qv)
         return mat
+
+    def to_euler(self):
+        """
+        This function parameterizes a given quaternion as an Euler angle and axis.
+        """
+        phi = 2.*np.arccos(self._q0)
+        e = self._qv / np.sin(phi/2.)
+        return Vector(e), phi

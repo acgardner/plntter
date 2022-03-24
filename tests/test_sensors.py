@@ -7,20 +7,21 @@ import numpy as np
 
 
 def test_IMU():
+    freq = 400
     w_true = Vector([0.,0.,0.])
     gyro_err = {
-        "sampling_freq": 200.,
+        "sampling_freq": freq,
         "bias_model": "gauss_markov",
         "correlation_time": 100.,
         "bias_var": np.deg2rad(0.1),
         "sensor_var": np.deg2rad(0.01)
     }
-    sample_time = [sample for sample in range(101)]
-    w_meas = np.zeros((3, len(sample_time)))
-    imu = IMU(w_true, gyro_err)
-    for sample in sample_time:
-        w_meas[:,sample] = imu.get_measurement()
-    
+    time = np.linspace(0,60,freq)    
+    w_meas = np.zeros((3,len(time)))
+    imu = IMU(w_true,gyro_err)
+    for dt,_ in enumerate(time):
+        w_meas[:,dt] = imu.get_measurement()
+
     plot_params = {
         "type": "lineplot",
         "xlabel": "Time (s)",
@@ -30,7 +31,7 @@ def test_IMU():
             "y",
             "z",
         ],
-        "x_data": sample_time,
+        "x_data": time,
         "y_data": [
             w_meas[0,:],
             w_meas[1,:],

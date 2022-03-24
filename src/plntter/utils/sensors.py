@@ -4,7 +4,18 @@ import numpy as np
 
 
 class IMU:
-    def __init__(self, w_true: Vector, gyro_err: dict) -> None:
+    """
+    w_meas = w_true + bias + white_noise
+    """
+    def __init__(self,
+                 w_true: Vector,
+                 gyro_err: dict={
+                     "bias_model": "no_bias",
+                     "sampling_freq": 1.,
+                     "bias_var": 0.,
+                     "sensor_var": 0.,
+                     }
+                 ) -> None:
         self.w_true = w_true.val
         self.gyro_err = gyro_err
         self.bias = Vector([0.,0.,0.]).val
@@ -22,8 +33,11 @@ class IMU:
             bias_y = np.exp(-self.dt/Tc)*self.bias[1] + np.random.normal(0., np.sqrt(self.gyro_err["bias_var"]))
             bias_z = np.exp(-self.dt/Tc)*self.bias[2] + np.random.normal(0., np.sqrt(self.gyro_err["bias_var"]))
             self.bias = Vector([bias_x, bias_y, bias_z]).val
-        else:
-            pass
+        elif self.gyro_err["bias_model"] == "no_bias":
+            bias_x = 0.
+            bias_y = 0.
+            bias_z = 0.
+            self.bias = Vector([bias_x, bias_y, bias_z]).val
         return self.bias
 
     def get_measurement(self) -> Vector:
@@ -43,6 +57,9 @@ class RangeSensor:
         self.x = []
 
 class StarTracker:
+    """
+    b = T(q_bi)*r_i + white_noise
+    """
     def __init__(self):
         self.x = []
 

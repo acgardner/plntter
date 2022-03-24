@@ -31,10 +31,14 @@ python3 main.py
 [MIT](https://choosealicense.com/licenses/mit/)
 
 
-## TODO's
+## Priority TODO's
 
-- finish spiceypy auto-builder
-- finish defining vector / quaternion operations
-- decide on matrix class
-- create plotting class for seaborn and plotly
-- add EKF and UKF predict / update equations
+- trajectory generator
+- state propagator -> pose, sensor error states
+- EKF and UKF predict / update equations
+
+## Eventual TODO's
+
+- matrix and state classes
+- spiceypy auto-build
+- synthetic star image generator

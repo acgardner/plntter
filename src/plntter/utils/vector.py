@@ -88,7 +88,7 @@ class Vector:
         vec = np.array((np.cos(ang_in_plane)*np.cos(ang_out_of_plane),
                         np.sin(ang_in_plane)*np.cos(ang_out_of_plane),
                         np.sin(ang_out_of_plane)))
-        return Vector(vec)
+        return Vector(vec).val
 
     @staticmethod
     def norm(vec) -> float:

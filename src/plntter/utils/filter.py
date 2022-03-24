@@ -8,10 +8,11 @@ class AEKF:
         pass
 
 class MEKF:
-    """
-    Placeholder class for Multiplicative EKF
-    """
-    def predict(self):
+    def __init__(self, state: np.array) -> None:
+    #TODO create State class
+    # error state vector = [3-vector of error angles, other 3-vector error states]
+    # formal state vector = [4-element attitude quaternion, other 3-vector states]
+    def predict(self) -> np.array:
         #x_k = f(x_km1) + w_k, w_k ~ N(0,Q_k)
         #x_k = f(q_km1,x_km1)
         #q_k = dq(dtheta_k) * q_km1
@@ -19,7 +20,7 @@ class MEKF:
         #P_k = np.linalg.multi_dot((F_k,P_km1,F_k.T)) + Q_k
         pass
 
-    def update(self):
+    def update(self) -> np.array:
         #z_k = h(x_k) + v_k, v_k ~ N(0,R_k)
         #H_k = dhdx(q_k,x_k)
         #S_k = np.linalg.multi_dot((H_k,P_k,H_k.T)) + R_k
