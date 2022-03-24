@@ -1,6 +1,6 @@
-import numpy as np
-
 from plntter.utils.quaternion import Quaternion
+
+import numpy as np
 
 
 def test_quat_setters() -> None:

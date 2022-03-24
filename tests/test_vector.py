@@ -43,3 +43,10 @@ def test_add_two_vectors():
         x, y = Vector(t[0]), Vector(t[1])
         z = x.val + y.val
         np.testing.assert_array_equal(z, s)
+
+def test_inner_product():
+    x = Vector([-1,2,0])
+    y = Vector([4,5,1])
+    out = x @ y
+    sol = 6
+    assert(out == 6)

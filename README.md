@@ -2,7 +2,7 @@
 
 PLNTTER is a Python library for developing and testing navigation algorithms
 
-PLNTTER = Pythonic Localization / Navigation Toolkit for Terrestrial / Extraterrestrial Roving
+PLNTTER = Pythonic Localization / Navigation Toolkit for Terrestrial / Extraterrestrial Research
 
 
 ## Usage

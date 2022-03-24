@@ -5,16 +5,25 @@ import seaborn as sns
 sns.set_theme(style="darkgrid")
 
 
-def lineplot():
-    df = pd.DataFrame(dict(time=np.arange(500),
-                           value=np.random.randn(500).cumsum()))
-    g = sns.relplot(x="time",
-                    y="value",
-                    kind="line",
-                    data=df)
-    g.figure.autofmt_xdate()
-    plt.show()
+class Plotter:
+    def __init__(self, plotting_params: dict):
+        self._plotting_params = plotting_params
+        
+        if self._plotting_params["type"] == "lineplot":
+            self._lineplot()
 
-
-if __name__ == "__main__":
-    lineplot()
+    def _lineplot(self):
+        plt.figure(1)
+        for data,lab in zip(self._plotting_params["y_data"],self._plotting_params["y_data_labels"]):
+            plt.plot(
+                self._plotting_params["x_data"],
+                data,
+                label=lab,
+            )
+        plt.xlabel(self._plotting_params["xlabel"], fontsize=16)
+        plt.ylabel(self._plotting_params["ylabel"], fontsize=16)
+        plt.xticks(fontsize=16)
+        plt.yticks(fontsize=16)
+        plt.xlim(self._plotting_params["x_data"][0], self._plotting_params["x_data"][-1])
+        plt.legend()
+        plt.show()
