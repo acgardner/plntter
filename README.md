@@ -42,3 +42,4 @@ python3 main.py
 - matrix and state classes
 - spiceypy auto-build
 - synthetic star image generator
+- integrate ROS2 (w/ nav2)
