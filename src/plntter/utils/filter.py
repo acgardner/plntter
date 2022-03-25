@@ -1,3 +1,9 @@
+from .quaternion import Quaternion
+from .vector import Vector
+
+import numpy as np
+
+
 class AEKF:
     """
     Placeholder class for Additive EKF
@@ -9,9 +15,10 @@ class AEKF:
 
 class MEKF:
     def __init__(self, state: np.array) -> None:
-    #TODO create State class
-    # error state vector = [3-vector of error angles, other 3-vector error states]
-    # formal state vector = [4-element attitude quaternion, other 3-vector states]
+        self.state = state
+        # error state vector = [3-vector of error angles, other 3-vector error states]
+        # formal state vector = [4-element attitude quaternion, other 3-vector states]
+    
     def predict(self) -> np.array:
         #x_k = f(x_km1) + w_k, w_k ~ N(0,Q_k)
         #x_k = f(q_km1,x_km1)

@@ -1,5 +1,6 @@
 from __future__ import annotations
 from typing import Iterable
+
 from .vector import Vector
 
 import numpy as np
@@ -78,8 +79,19 @@ class Quaternion:
 
     def to_euler(self):
         """
-        This function parameterizes a given quaternion as an Euler angle and axis.
+        This function parameterizes a quaternion using an Euler angle and axis.
         """
-        phi = 2.*np.arccos(self._q0)
-        e = self._qv / np.sin(phi/2.)
-        return Vector(e), phi
+        ang = 2.*np.arccos(self.q0)
+        ax = self.qv / np.sin(ang/2.)
+        return Vector(ax), ang
+
+    @staticmethod
+    def random(var: float) -> Quaternion:
+        quat = Quaternion([0.,0.,0.,0.])
+
+        ax = Vector.random()
+        ang = np.random.normal(scale=np.sqrt(var))
+        
+        quat.qv = ax*np.sin(ang/2.)
+        quat.q0 = np.cos(ang/2.)
+        return quat.val

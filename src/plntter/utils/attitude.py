@@ -5,8 +5,8 @@ import numpy as np
 
 
 class AttitudeKinematics:
-    def __init__(self, q: Quaternion):
-        self.q = q
+    def __init__(self, true_quat: Quaternion):
+        self.true_quat = true_quat
     
     def propagate(self):
         pass
@@ -41,12 +41,23 @@ class AttitudeSolver:
         pass
 
 class AttitudeTransform:
-    def __init__(self, transform_type: str) -> None:
-        self.transform_type = transform_type
-
-    def euler_to_mat(self, vec: Vector, ang: float) -> np.array:
-        mat = np.eye(3)*np.cos(ang) + (1.-np.cos(ang))*vec.reshape((3,1))*vec.reshape((3,1)).T + vec.to_skew_mat()*np.sin(ang)
-        return mat
+    @staticmethod
+    def euler_to_mat(ax: Vector, ang: float) -> np.array:
+        """
+        This function converts an Euler axis and angle to an attitude matrix
+        """
+        ax = np.reshape((3,1))
+        return np.eye(3)*np.cos(ang) + (1.-np.cos(ang))*ax*ax.T + ax.to_skew_mat()*np.sin(ang)
+    
+    @staticmethod
+    def euler_to_quat(ax: Vector, ang: float) -> Quaternion:
+        """
+        This function converts an Euler axis and angle to a quaternion
+        """
+        quat = Quaternion([0.,0.,0.,0.])
+        quat.qv = ax*np.sin(ang/2.)
+        quat.q0 = np.cos(ang/2.)
+        return quat
 
     @staticmethod
     def arcsec_to_deg(val: float) -> float:

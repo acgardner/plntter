@@ -17,7 +17,7 @@ def test_quat_setters() -> None:
 
 def test_quat_mult() -> None:
     q = Quaternion([1,0,0,1])
-    p = [0,1,0,1]
+    p = Quaternion([0,1,0,1])
     quat = q*p
     assert(type(quat) == Quaternion)
     np.testing.assert_array_equal(quat.val, [1,1,1,1])
