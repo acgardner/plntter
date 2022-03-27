@@ -38,4 +38,4 @@ def test_IMU():
             w_meas[2,:],
         ],
     }
-    p = Plotter(plot_params)
+    #p = Plotter(plot_params)

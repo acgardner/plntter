@@ -22,27 +22,35 @@ class Quaternion:
     @property
     def val(self) -> Quaternion:
         return self._quat
+
     @val.setter
     def val(self, quat: Iterable) -> Quaternion:
         self._quat = Quaternion(quat)
+
     @property
     def qv(self) -> Vector:
         return self._qv
+
     @qv.setter
     def qv(self, vec: Iterable) -> Vector:
         self._qv = Vector(vec).val
+
     @property
     def qx(self) -> float:
         return self.qv[0]
+
     @property
     def qy(self) -> float:
         return self.qv[1]
+
     @property
     def qz(self) -> float:
         return self.qv[2]
+
     @property
     def q0(self) -> float:
         return self._q0
+
     @q0.setter
     def q0(self, val: float) -> float:
         self._q0 = val
@@ -83,7 +91,7 @@ class Quaternion:
         """
         ang = 2.*np.arccos(self.q0)
         ax = self.qv / np.sin(ang/2.)
-        return Vector(ax), ang
+        return Vector(ax).val, ang
 
     @staticmethod
     def random(var: float) -> Quaternion:
@@ -94,4 +102,4 @@ class Quaternion:
         
         quat.qv = ax*np.sin(ang/2.)
         quat.q0 = np.cos(ang/2.)
-        return quat.val
+        return quat
